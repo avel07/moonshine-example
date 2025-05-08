@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Policies\MoonshineUserPolicy;
 use App\Policies\MoonshineUserRolePolicy;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use MoonShine\Laravel\Models\MoonshineUserRole;
