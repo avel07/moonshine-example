@@ -24,6 +24,9 @@ use MoonShine\Laravel\Resources\MoonShineUserResource;
 use MoonShine\Laravel\Resources\MoonShineUserRoleResource;
 use MoonShine\MenuManager\MenuGroup;
 use MoonShine\MenuManager\MenuItem;
+use App\MoonShine\Resources\NewsResource;
+use App\MoonShine\Resources\Test2Resource;
+use App\MoonShine\Resources\NewsSectionResource;
 
 final class MoonShineLayout extends CompactLayout
 {
@@ -63,8 +66,8 @@ final class MoonShineLayout extends CompactLayout
             // ]),
             MenuItem::make('ТЕСТ', TestResource::class)
                 ->icon('users'),
-
-            // MenuItem::make('Сайт', static fn () => route('home')),
+            MenuItem::make('News', NewsResource::class),
+            MenuItem::make('NewsSections', NewsSectionResource::class),
         ];
     }
 

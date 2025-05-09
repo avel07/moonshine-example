@@ -10,6 +10,8 @@ use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Laravel\Resources\ModelResource;
 use Throwable;
 
+use MoonShine\UI\Fields\{Color, Fieldset, ID, Image, Text};
+
 
 /**
  * @extends FormPage<ModelResource>
@@ -21,7 +23,10 @@ class TestFormPage extends FormPage
      */
     protected function fields(): iterable
     {
-        return [];
+        return [
+            ID::make(),
+            Text::make('Колонка с текстом', 'text')->required(),
+        ];
     }
 
     /**

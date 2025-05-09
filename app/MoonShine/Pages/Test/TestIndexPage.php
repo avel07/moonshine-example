@@ -8,15 +8,7 @@ use MoonShine\Laravel\Pages\Crud\IndexPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Laravel\Resources\ModelResource;
-use MoonShine\UI\Fields\Color;
-use MoonShine\UI\Fields\Fieldset;
-use MoonShine\UI\Fields\ID;
-use MoonShine\UI\Fields\Image;
-use MoonShine\UI\Fields\Number;
-use MoonShine\UI\Fields\RangeSlider;
-use MoonShine\UI\Fields\Switcher;
-use MoonShine\UI\Fields\Text;
-use MoonShine\UI\Fields\Url;
+use MoonShine\UI\Fields\{Color, Fieldset, ID, Image, Text};
 use Throwable;
 
 

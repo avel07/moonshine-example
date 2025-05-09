@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\MoonShine\Resources\ArticleResource;
-use App\MoonShine\Resources\CategoryResource;
-use App\MoonShine\Resources\CommentResource;
-use App\MoonShine\Resources\DictionaryResource;
-use App\MoonShine\Resources\SettingResource;
+use App\MoonShine\Resources\NewsResource;
+use App\MoonShine\Resources\NewsSectionResource;
 use App\MoonShine\Resources\TestResource;
 use App\MoonShine\Resources\UserResource;
 use Illuminate\Support\ServiceProvider;
@@ -31,18 +28,19 @@ class MoonShineServiceProvider extends ServiceProvider
         $config->authEnable();
 
         // $core->autoload();
-        // $core->resources([])
 
         $core
-        ->resources([
-            MoonShineUserResource::class,
-            MoonShineUserRoleResource::class,
-            UserResource::class,
-            TestResource::class,
-        ])
-        ->pages([
-            ...$config->getPages(),
-        ])
-    ;
+            ->resources([
+                MoonShineUserResource::class,
+                MoonShineUserRoleResource::class,
+                UserResource::class,
+                TestResource::class,
+                NewsResource::class,
+                NewsSectionResource::class
+            ])
+            ->pages([
+                ...$config->getPages(),
+            ])
+        ;
     }
 }

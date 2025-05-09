@@ -1,5 +1,5 @@
 services:
-  nginx:
+  test-moonshine-nginx:
     build:
       context: .
       dockerfile: ./docker/dockerfiles/nginx/Dockerfile
@@ -8,18 +8,20 @@ services:
     volumes:
       - ./:${APP_PATH}
     depends_on:
-      - php
+      - test-moonshine-php
+    links:
+      - test-moonshine-php:php
     networks:
       - traefik-docker
     labels:
         - "traefik.enable=true"
         - "traefik.docker.network=traefik-docker"
-        - "traefik.http.routers.docker_dev.rule=Host(`moonshine-demo.docker.dev`)"
-        - "traefik.http.routers.docker_dev.entrypoints=https"
-        - "traefik.http.routers.docker_dev.tls=true"
-        - "traefik.http.services.docker_dev.loadbalancer.server.port=80"
+        - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`moonshine-demo.docker.dev`)"
+        - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.entrypoints=https"
+        - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.tls=true"
+        - "traefik.http.services.${COMPOSE_PROJECT_NAME}.loadbalancer.server.port=80"
 
-  php:
+  test-moonshine-php:
     build:
       args:
         user: ${DOCKER_USER}
@@ -32,12 +34,12 @@ services:
     volumes:
       - ./:${APP_PATH}
     depends_on:
-      - db
-      - redis
+      - test-moonshine-db
+      - test-moonshine-redis
     networks:
       - traefik-docker
 
-  db:
+  test-moonshine-db:
     container_name: ${COMPOSE_PROJECT_NAME}-db
     build:
       context: .
@@ -49,17 +51,15 @@ services:
     networks:
       - traefik-docker
 
-  redis:
+  test-moonshine-redis:
     container_name: ${COMPOSE_PROJECT_NAME}-redis
     image: redis:7.0.11-alpine
     volumes:
       - ./docker/volumes/redis:/data
-    # ports:
-    #   - "${APP_REDIS_PORT}:6379"
     networks:
       - traefik-docker
 
-  npm:
+  test-moonshine-npm:
     build:
       context: .
       dockerfile: ./docker/dockerfiles/node/Dockerfile
@@ -70,8 +70,6 @@ services:
     working_dir: ${APP_PATH}
     profiles: ["npm"]
     entrypoint: ['npm']
-    # ports:
-    #   - "${VITE_PORT}:${VITE_PORT}"
     networks:
       - traefik-docker
 
