@@ -1,21 +1,14 @@
 ## Installation
 
 ### Docker
- - Create a .env file and copy the values from .env.example,
- - Change DOCKER_USER value,
- - Configure the ports and database to work (optional).
-
-The demo can be run to docker-compose. Use:
-```
-make demo-install
-```
-And go to http://localhost or http://localhost/admin
+ - Создайте .evn и скопируйте всё из .env.example,
+ - Измените значение DOCKER_USER,
+ - Для работы Docker необходим traefik (дефолтный домен test-moonshine.docker.dev)
+ - Для работы картинок необходим minio 
 
 **Settings.**
 
-Before you run "make demo-install", you can configure the ports and database to work.
-
-In .env.example replace
+В .env.example измените
 ```
 DOCKER_USER=laravel #OS user
 LOCAL_WEB_PORT=80
@@ -23,7 +16,7 @@ LOCAL_MYSQL_PORT=3306
 LOCAL_REDIS_PORT=6379
 ```
 
-The database setup is located in docker/volumes/MySQL/dump
+Параметры базы данных. База - moonshine-test-db
 Default:
 ```
 DB_DATABASE=moonshine_demo
@@ -32,11 +25,10 @@ DB_PASSWORD=12345
 ```
 
 ### Manually
-- Add database
-- Run composer install
-- Add .env and configure
-- php artisan key:generate
-- php artisan storage:link
-- php artisan migrate --seed
-- Go to /admin
-- Optionally, you can configure github or tinymce file manager
+- Запускаем проект
+- Выполняем composer install
+- Добавляем .env and configure
+- Выполняем php artisan key:generate
+- Выполняем php artisan storage:link
+- Выполняем php artisan migrate --seed
+- Переходим в проект/admin
